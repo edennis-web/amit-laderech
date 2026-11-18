@@ -1,0 +1,12 @@
+# Client materials - private, not part of the code
+חומרים שנשלחו מהלקוח/
+*.pdf
+*.pptx
+*.skill
+
+# Local tooling
+.claude/
+.DS_Store
+
+# Internal preview page (not part of the live site)
+site/_mobile.html
