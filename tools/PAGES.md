@@ -138,4 +138,3 @@ section: about
 | youth program sign-up (Ministry of Defense, URL must not change) | https://www.amitladerech.org/landing-page-v2 |
 | Startline program | https://www.startline.org.il/ |
 | English site | https://www.amitladerech.org/english |
-| mentor / young person guide libraries (members) | https://www.amitladerech.org/ספריית-הדרכה , https://www.amitladerech.org/copy-of-ספריית-הדרכה |
