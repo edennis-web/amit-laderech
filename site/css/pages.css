@@ -3,8 +3,11 @@
    Building blocks are documented in tools/PAGES.md. */
 
 /* current section in the nav */
-.nav-list > li[data-current] > .nav-top { box-shadow: inset 0 -3px 0 var(--orange); }
-.sub a[aria-current="page"] { font-weight: 700; box-shadow: inset 3px 0 0 var(--orange); }
+.nav-list > li[data-current] > .nav-top::after { transform: scaleX(1); background: var(--navy); }
+.nav-list > li[data-current]:hover > .nav-top::after, .nav-list > li[data-current].open > .nav-top::after { background: var(--orange); }
+.sub a[aria-current="page"] { font-weight: 700; }
+.sub a[aria-current="page"]::before { transform: scale(1); }
+.sub a[aria-current="page"] { padding-inline-start: calc(var(--space-4) + 12px); }
 .nav-en .nav-top { font: 700 14px/1 var(--font-english); }
 .nav-top { white-space: nowrap; }
 @media (max-width: 1180px) { .nav-list > li[data-current] > .nav-top { box-shadow: none; color: var(--orange); } }
@@ -50,7 +53,8 @@
 .prose ul { display: grid; gap: var(--space-2); padding-inline-start: var(--space-6); list-style: none; }
 .prose ul li { position: relative; }
 .prose ul li::before { content: ""; position: absolute; inset-inline-start: calc(-1 * var(--space-6)); top: 11px; width: 10px; height: 10px; background: var(--orange); }
-.prose a { color: var(--navy); font-weight: 700; }
+.prose a:not(.btn) { color: var(--navy); font-weight: 700; }
+.is-navy .prose a:not(.btn) { color: var(--cyan); }
 .prose strong { font-weight: 700; }
 
 .split { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-12); align-items: start; }
@@ -71,7 +75,9 @@
 .card-item h3 { font: 900 24px/1.2 var(--font-hebrew); }
 .card-item p { font-size: 16px; line-height: 26px; }
 .card-item .tag { font: 700 14px/20px var(--font-hebrew); color: var(--ink-muted); }
-.card-item .actions { margin-top: auto; padding-top: var(--space-2); display: flex; flex-wrap: wrap; gap: var(--space-3); }
+/* buttons in cards: full width, stacked, always sitting on the card's bottom edge so rows line up */
+.card-item .actions { margin-top: auto; padding-top: var(--space-4); display: flex; flex-direction: column; gap: var(--space-3); }
+.card-item .actions .btn { width: 100%; }
 a.card-item { text-decoration: none; transition: transform .2s; }
 a.card-item:hover { transform: translateY(-4px); }
 a.card-item .more { margin-top: auto; font-weight: 700; }
@@ -90,11 +96,13 @@ a.card-item .more { margin-top: auto; font-weight: 700; }
 
 /* ---------- People ---------- */
 .people { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-6); }
-.person { background: var(--white); padding: var(--space-6); display: grid; gap: var(--space-3); align-content: start; box-shadow: 0 0 0 1px var(--hairline); }
-.person .avatar { width: 72px; height: 72px; display: grid; place-items: center; font: 900 26px/1 var(--font-hebrew); background: var(--cyan); color: var(--navy); }
+/* people cards: same height in a row; "קראו עוד" always on the bottom line */
+.person { background: var(--white); padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); box-shadow: 0 0 0 1px var(--hairline); }
+.person details { margin-top: auto; padding-top: var(--space-2); border-top: 1px solid var(--hairline); }
+.person .avatar { display: block; width: 88px; aspect-ratio: 1; background: var(--cyan); overflow: hidden; }  /* photo goes here */
 .person:nth-child(4n+2) .avatar { background: var(--orange); }
 .person:nth-child(4n+3) .avatar { background: var(--coral); }
-.person:nth-child(4n+4) .avatar { background: var(--navy); color: var(--white); }
+.person:nth-child(4n+4) .avatar { background: var(--navy); }
 .person .avatar img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
 .person h3 { font: 700 20px/28px var(--font-hebrew); }
 .person .role { font: 700 14px/20px var(--font-hebrew); color: var(--ink-muted); }
@@ -149,3 +157,23 @@ a.card-item .more { margin-top: auto; font-weight: 700; }
 .media-slot { aspect-ratio: 16 / 9; display: grid; place-items: center; background: var(--navy); color: var(--white); text-align: center; padding: var(--space-6); }
 .media-slot p { color: #b9bcd6; font-size: 15px; }
 .after { margin-top: var(--space-8); }
+
+/* ---------- Buttons: one system everywhere ---------- */
+.actions { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+.prose .actions { margin-block: var(--space-2); }
+.btn { white-space: nowrap; text-align: center; }
+@media (max-width: 420px) { .page-hero .actions .btn, .cta-band .actions .btn, .prose .actions .btn { flex: 1 1 100%; } }
+
+/* any card: its last link/button sits on the bottom edge, so a row of cards lines up */
+.card-item > .more, .card-item > .actions, .news-card .body > :last-child { margin-top: auto; }
+.news-card .body { flex: 1; display: flex; flex-direction: column; }
+
+/* gradual reveal on inner pages (classes added by main.js; nothing is hidden without JS or with reduced motion) */
+.js .inner .rv { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0s); }
+.js .inner .rv.in { opacity: 1; transform: none; }
+.js .inner .page-hero .wrap > * { animation: rise .8s cubic-bezier(.2,.7,.2,1) both; }
+.js .inner .page-hero .wrap > :nth-child(2) { animation-delay: .08s; }
+.js .inner .page-hero .wrap > :nth-child(3) { animation-delay: .16s; }
+.js .inner .page-hero .wrap > :nth-child(4) { animation-delay: .26s; }
+.js .inner .page-hero .wrap > :nth-child(5) { animation-delay: .36s; }
+@media (prefers-reduced-motion: reduce) { .js .inner .rv { opacity: 1; transform: none; } .js .inner .page-hero .wrap > * { animation: none; } }

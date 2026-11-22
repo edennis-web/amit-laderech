@@ -10,3 +10,6 @@
 
 # Internal preview page (not part of the live site)
 site/_mobile.html
+
+# Internal notes for the client - not public
+תוכן חסר*.md
