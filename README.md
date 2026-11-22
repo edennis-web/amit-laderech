@@ -1,25 +1,45 @@
 # Amit LaDerech - website
 
 Static website for the nonprofit **עמית לדרך (Amit LaDerech)**, built by Moveo Creative.
+Plain HTML/CSS/JS, Hebrew RTL. This is the working design + content build; it will be moved to React.
 
-- `site/index.html` - main site (donors, mentors, companies)
-- `site/young/` - mini-site for discharged soldiers (mobile-first, TikTok-style feed)
-- `site/css`, `site/js`, `site/assets` - styles, scripts, brand assets, fonts (Heebo, Montserrat - OFL)
+- Live preview: https://edennis-web.github.io/amit-laderech/ (youth site: `/young/`)
+- `site/` - what gets published
+  - `index.html` - home page (hand-made)
+  - `young/` - mini-site for discharged soldiers (hand-made; mobile-first feed, desktop tile wall)
+  - all other `*.html` - inner pages, **generated** (see below)
+  - `css/` - `tokens.css` (brand tokens), `base.css`, `main.css` (home + shared), `pages.css` (inner pages), `young.css`
+  - `js/` - `main.js` (nav, reveal, counters, hero road), `route-draw.js` (brand route-line animation), `cookies.js` (consent), `young.js`
+  - `assets/` - brand logos/shapes/patterns, fonts (Heebo, Montserrat - OFL), photos
+- `tools/` - page sources and scripts
+  - `layout/header.html`, `layout/footer.html` - shared header/footer (also injected into `index.html`)
+  - `pages/<slug>.html` - content of each inner page
+  - `build.py` - builds the inner pages and refreshes header/footer + asset versions
+  - `check_links.py` - checks every internal link and anchor (`--external` also checks outside links)
+  - `PAGES.md` - how to write a page, building blocks, **full site map and outside links (forms, donations)**
 
-Plain HTML/CSS/JS, Hebrew RTL, no build step.
-
-## Preview locally
-
-Double-click `פתיחת האתר.command` (macOS), or run:
+## Work on it
 
 ```bash
+python3 tools/build.py          # after editing tools/pages, tools/layout, css or js
+python3 tools/check_links.py    # must say "all good"
 cd site && python3 -m http.server 4400
 ```
 
-Then open http://localhost:4400/ and http://localhost:4400/young/
+Or double-click `פתיחת האתר.command` (macOS) and open http://localhost:4400/
 
-## Notes
+## Moving to React
 
-- The Ministry of Defense landing page URL (`/landing-page-v2`) must not change.
-- Legal pages (privacy, terms, accessibility) are pending text from the client's lawyer.
-- No marketing pixels or social embeds load before cookie consent (`js/cookies.js`).
+- Routes = the site map table in `tools/PAGES.md` (file name = route, e.g. `team.html` -> `/team`).
+  The youth site is its own route tree (`/young`). Keep `/landing-page-v2` unchanged on the production domain.
+- Components map 1:1 to the building blocks in `PAGES.md` (PageHero, AnchorNav, Cards, Tiles, People, DocList,
+  LinkList, PullQuote, CtaBand, Notice, MediaSlot) plus Header/Footer from `tools/layout`.
+- Design tokens: `site/css/tokens.css`. Brand rules: panels square, buttons radius 4px, photos B&W or orange duotone.
+- Photos and videos are placeholders where marked (`media-slot`, initials avatars, logo wall) - to be replaced.
+
+## Before launch
+
+- Remove the `noindex` meta tags and `site/robots.txt` (preview only).
+- Legal pages (privacy, terms, accessibility) are waiting for the lawyer's text.
+- Confirm photo usage consent with the association.
+- No marketing pixels or social embeds load before cookie consent (`js/cookies.js`, `AmitConsent.onGrant`).
