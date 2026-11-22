@@ -359,3 +359,5 @@ svg.route[data-draw="load"].drawn path { --draw: 0; }
 .site-footer .socials a:hover { background: var(--white); text-decoration: none; }
 .site-footer .socials svg { width: 20px; height: 20px; fill: var(--white); transition: fill .15s; }
 .site-footer .socials a:hover svg { fill: var(--navy); }
+
+.after { margin-top: var(--space-8); }

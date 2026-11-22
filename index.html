@@ -11,15 +11,16 @@
 <meta property="og:locale" content="he_IL">
 <link rel="icon" href="assets/brand/symbol/compass-mark.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/Heebo-Variable.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="stylesheet" href="css/tokens.css">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/main.css?v=33">
+<link rel="stylesheet" href="css/tokens.css?v=3a555a6a">
+<link rel="stylesheet" href="css/base.css?v=3a555a6a">
+<link rel="stylesheet" href="css/main.css?v=3a555a6a">
 <script>document.documentElement.classList.add('js');</script>
-<script src="js/cookies.js" defer></script>
-<script src="js/route-draw.js" defer></script>
-<script src="js/main.js?v=12" defer></script>
+<script src="js/cookies.js?v=3a555a6a" defer></script>
+<script src="js/route-draw.js?v=3a555a6a" defer></script>
+<script src="js/main.js?v=3a555a6a" defer></script>
 </head>
 <body>
+<!-- @header -->
 <a class="skip-link" href="#main">דילוג לתוכן</a>
 
 <!-- Youth entry: always visible, brand "footer bar" style (cyan, navy text) -->
@@ -38,36 +39,58 @@
     </button>
     <nav class="nav" id="main-nav" aria-label="ניווט ראשי">
       <ul class="nav-list">
-        <li class="has-sub">
+        <li class="has-sub" data-section="about">
           <button class="nav-top" aria-expanded="false" aria-controls="sub-about">אודות<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
           <ul class="sub" id="sub-about">
-            <li><a href="about.html#story">הסיפור והחזון</a></li>
+            <li><a href="about.html">הסיפור והחזון</a></li>
             <li><a href="about.html#programs">התוכניות שלנו</a></li>
-            <li><a href="about.html#team">הצוות והוועד המנהל</a></li>
-            <li><a href="about.html#partners">השותפים לדרך</a></li>
+            <li><a href="team.html">צוות העמותה</a></li>
+            <li><a href="board.html">הוועד המנהל</a></li>
+            <li><a href="partners.html">השותפים לדרך</a></li>
+            <li><a href="documents.html">מסמכי העמותה</a></li>
           </ul>
         </li>
-        <li class="has-sub">
+        <li class="has-sub" data-section="join">
           <button class="nav-top" aria-expanded="false" aria-controls="sub-join">הצטרפו לדרך<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
           <ul class="sub" id="sub-join">
-            <li><a href="#join">תרומה</a></li>
-            <li><a href="#mentor">מנטורים ומנטוריות</a></li>
-            <li><a href="join.html#companies">חברות וארגונים</a></li>
+            <li><a href="join.html">כל הדרכים להצטרף</a></li>
+            <li><a href="join.html#donate">תרומה</a></li>
+            <li><a href="mentors.html">מנטורים ומנטוריות</a></li>
+            <li><a href="companies.html">חברות וארגונים</a></li>
             <li><a href="young/">חיילות וחיילים משוחררים</a></li>
           </ul>
         </li>
-        <li><a class="nav-top" href="#model">המודל שלנו</a></li>
-        <li><a class="nav-top" href="blog.html">בלוג</a></li>
-        <li><a class="nav-top" href="press.html">מדברים עלינו</a></li>
-        <li><a class="nav-top" href="contact.html">דברו איתנו</a></li>
+        <li data-section="model"><a class="nav-top" href="model.html">המודל שלנו</a></li>
+        <li class="has-sub" data-section="resources">
+          <button class="nav-top" aria-expanded="false" aria-controls="sub-res">מאגר מענים<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+          <ul class="sub" id="sub-res">
+            <li><a href="resources.html">כל המענים</a></li>
+            <li><a href="employment-education.html">תעסוקה והשכלה</a></li>
+            <li><a href="emotional-support.html">תמיכה רגשית</a></li>
+            <li><a href="scholarships.html">מלגות</a></li>
+            <li><a href="professional-advice.html">ייעוץ מקצועי</a></li>
+            <li><a href="rights.html">מיצוי זכויות</a></li>
+            <li><a href="volunteering.html">התנדבות</a></li>
+          </ul>
+        </li>
+        <li class="has-sub" data-section="news">
+          <button class="nav-top" aria-expanded="false" aria-controls="sub-news">עדכונים<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+          <ul class="sub" id="sub-news">
+            <li><a href="blog.html">בלוג וניוזלטר</a></li>
+            <li><a href="press.html">מדברים עלינו</a></li>
+          </ul>
+        </li>
+        <li data-section="contact"><a class="nav-top" href="contact.html">דברו איתנו</a></li>
+        <li class="nav-en"><a class="nav-top" href="https://www.amitladerech.org/english" lang="en" hreflang="en">EN</a></li>
       </ul>
     </nav>
     <div class="header-cta">
-      <a class="btn btn-outline" href="#mentor">להיות מנטור/ית</a>
+      <a class="btn btn-outline" href="mentors.html">להיות מנטור/ית</a>
       <a class="btn btn-orange" href="https://meshulam.co.il/quick_payment?b=8d4ee407628d09dd5983479d393cd06f">לתרומה</a>
     </div>
   </div>
 </header>
+<!-- /@header -->
 
 <main id="main">
 
@@ -80,7 +103,7 @@
       <div class="hero-ctas">
         <div class="actions">
           <a class="btn btn-orange" href="https://meshulam.co.il/quick_payment?b=8d4ee407628d09dd5983479d393cd06f">אני רוצה לתרום</a>
-          <a class="btn btn-outline-white" href="#mentor">להיות מנטור/ית</a>
+          <a class="btn btn-outline-white" href="mentors.html">להיות מנטור/ית</a>
         </div>
         <a class="hero-young" href="young/"><span>חיילת או חייל משוחרר/ת?</span> <b>יש לך אתר משלך</b></a>
       </div>
@@ -147,6 +170,7 @@
         <li class="step reveal"><span class="num" aria-hidden="true">03</span><h3>תמיכה רגשית</h3><p>ליווי וטיפול מקצועי לפי הצורך, מכמה זוגות עיניים.</p></li>
         <li class="step reveal"><span class="num" aria-hidden="true">04</span><h3>מעטפת תומכת</h3><p>הכוון תעסוקתי פסיכולוגי, ייעוץ משפטי, מיצוי זכויות, ייעוץ כלכלי, מלגות ועוד.</p></li>
       </ol>
+      <p class="after reveal"><a class="btn btn-outline" href="model.html">למודל המלא</a></p>
     </div>
   </section>
 
@@ -178,6 +202,7 @@
           <p>ליווי ממושך תוך כדי המעברים לשירות הצבאי, במהלכו ולאחריו - הכוונה ותמיכה להשלמת שירות משמעותי ויציאה מיטיבה לאזרחות.</p>
         </article>
       </div>
+      <p class="after reveal"><a class="btn btn-outline-white" href="about.html#programs">לכל התוכניות</a></p>
     </div>
   </section>
 
@@ -196,7 +221,7 @@
         <blockquote>בתהליך שעברתי נתרמתי לא פחות ממה שהצעיר שלי נתרם. למדתי על עצמי, שיפרתי את ההורות שלי, את התקשורת עם העובדים שלי… זו הייתה חוויה משנת חיים.</blockquote>
         <figcaption>מנטור בעמית לדרך</figcaption>
       </figure>
-      <div class="reveal"><a class="btn btn-orange" href="contact.html?topic=mentor">אני רוצה להיות מנטור/ית</a></div>
+      <div class="reveal"><a class="btn btn-orange" href="mentors.html">אני רוצה להיות מנטור/ית</a></div>
     </div>
     <div class="photo reveal-photo">
       <img src="assets/img/mentor-pair.jpg" alt="מנטורית וצעירה יושבות יחד על ספסל ומחייכות" loading="lazy">
@@ -246,14 +271,14 @@
         <p class="eyebrow">מנטורים ומתנדבים</p>
         <h3>להיות עמית<br>לדרך של מישהו</h3>
         <p>זו ההזדמנות לעשות משהו בשביל מישהו אחר - להיות משמעותיים עבור צעיר/ה שמאמינים שיש מחר טוב יותר.</p>
-        <div class="actions"><a class="btn btn-orange" href="contact.html?topic=mentor">להצטרפות לנבחרת</a></div>
+        <div class="actions"><a class="btn btn-orange" href="mentors.html">להצטרפות לנבחרת</a></div>
         <img class="shape" src="assets/brand/shapes/spinner-navy.svg" alt="" aria-hidden="true">
       </article>
       <article class="path path--org">
         <p class="eyebrow">חברות וארגונים</p>
         <h3>מנהלים<br>סוללים דרך</h3>
         <p>תוכנית מנטורינג בלעדית לארגון, שבה מנהלים ועובדים בכירים מלווים את צעירי עמית לדרך.</p>
-        <div class="actions"><a class="btn btn-orange" href="contact.html?topic=org">לשיחת היכרות</a></div>
+        <div class="actions"><a class="btn btn-orange" href="companies.html">לשיחת היכרות</a></div>
         <img class="shape" src="assets/brand/shapes/pointer-white.svg" alt="" aria-hidden="true">
       </article>
     </div>
@@ -290,6 +315,7 @@
   </section>
 </main>
 
+<!-- @footer -->
 <footer class="site-footer">
   <img class="route" data-draw="scroll" src="assets/brand/patterns/route-lines-white.svg" alt="" aria-hidden="true">
   <div class="wrap">
@@ -303,18 +329,19 @@
         <h2 id="f-site">האתר</h2>
         <ul>
           <li><a href="about.html">אודות</a></li>
-          <li><a href="#model">המודל שלנו</a></li>
+          <li><a href="model.html">המודל שלנו</a></li>
+          <li><a href="resources.html">מאגר מענים</a></li>
           <li><a href="blog.html">בלוג</a></li>
           <li><a href="press.html">מדברים עלינו</a></li>
-          <li><a href="contact.html">דברו איתנו</a></li>
+          <li><a href="https://www.amitladerech.org/ספריית-הדרכה">ספריית הדרכה למנטורים</a></li>
         </ul>
       </nav>
       <nav aria-labelledby="f-join">
         <h2 id="f-join">הצטרפו לדרך</h2>
         <ul>
-          <li><a href="https://meshulam.co.il/quick_payment?b=8d4ee407628d09dd5983479d393cd06f">תרומה</a></li>
-          <li><a href="#mentor">מנטורים ומנטוריות</a></li>
-          <li><a href="join.html#companies">חברות וארגונים</a></li>
+          <li><a href="join.html#donate">תרומה</a></li>
+          <li><a href="mentors.html">מנטורים ומנטוריות</a></li>
+          <li><a href="companies.html">חברות וארגונים</a></li>
           <li><a href="young/">לחיילים משוחררים</a></li>
         </ul>
       </nav>
@@ -334,13 +361,14 @@
           <li><a href="tel:+972547924900"><bdi dir="ltr">054-792-4900</bdi></a></li>
           <li><a href="mailto:info@amitladerech.org"><bdi dir="ltr">info@amitladerech.org</bdi></a></li>
           <li><span class="f-label">לחברות וארגונים:</span><a href="mailto:hadas@amitladerech.org"><bdi dir="ltr">hadas@amitladerech.org</bdi></a></li>
+          <li><a class="f-form" href="contact.html">לטופס יצירת קשר</a></li>
         </ul>
       </div>
     </div>
     <div class="bottom">
       <p>© עמותת עמית לדרך (ע״ר)</p>
       <nav aria-label="מידע משפטי">
-        <a href="about.html#documents">מסמכי עמותה</a>
+        <a href="documents.html">מסמכי עמותה</a>
         <a href="privacy.html">מדיניות פרטיות</a>
         <a href="terms.html">תנאי שימוש</a>
         <a href="accessibility.html">הצהרת נגישות</a>
@@ -364,5 +392,6 @@
     <button class="btn btn-outline" data-ck="prefs">התאמה אישית</button>
   </div>
 </div>
+<!-- /@footer -->
 </body>
 </html>

@@ -91,9 +91,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Video buttons — the success-story videos are in the client's Google Drive.
-  // When we get them, load them only on click (no third-party embed before consent).
-  document.querySelectorAll('[data-video]').forEach(function (b) {
-    b.addEventListener('click', function () { alert('כאן ייפתח סרטון סיפור ההצלחה (ממתינים לקבצים מהעמותה).'); });
-  });
+  // Success-story buttons link to the YouTube channel for now.
+  // When the story videos arrive, swap the href (or load the video on click - never embed before consent).
 });
