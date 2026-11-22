@@ -39,15 +39,22 @@
 .nav { margin-inline-start: auto; }
 .nav-list { display: flex; gap: var(--space-1); align-items: center; }
 .nav-list > li { position: relative; }
-.nav-top { display: flex; align-items: center; gap: 6px; font: 500 16px/1 var(--font-hebrew); color: var(--navy); background: none; border: 0; cursor: pointer; text-decoration: none; padding: var(--space-3); min-height: 44px; }
+.nav-top { position: relative; display: flex; align-items: center; gap: 6px; font: 500 16px/1 var(--font-hebrew); color: var(--navy); background: none; border: 0; cursor: pointer; text-decoration: none; padding: var(--space-3); min-height: 44px; transition: color .2s; }
 .nav-top svg { width: 11px; height: 8px; transition: transform .2s; }
 .nav-top[aria-expanded="true"] svg { transform: rotate(180deg); }
-.nav-top:hover { box-shadow: inset 0 -3px 0 var(--orange); }
-.sub { position: absolute; top: 100%; inset-inline-start: 0; min-width: 230px; background: var(--white); box-shadow: 0 16px 32px rgba(18,23,84,.14), inset 0 3px 0 var(--orange); padding: var(--space-2) 0; z-index: 60; visibility: hidden; opacity: 0; transform: translateY(6px); transition: opacity .18s, transform .18s, visibility .18s; }
-.has-sub.open .sub { visibility: visible; opacity: 1; transform: none; }
-@media (hover: hover) and (min-width: 1181px) { .has-sub:hover .sub { visibility: visible; opacity: 1; transform: none; } }
-.sub a { display: block; padding: var(--space-3) var(--space-6); text-decoration: none; font-size: 16px; line-height: 22px; }
-.sub a:hover { background: var(--paper); }
+/* hover: a thin underline that opens from the center (no stacked bars) */
+.nav-top::after { content: ""; position: absolute; inset-inline: var(--space-3); bottom: 4px; height: 2px; background: var(--orange); transform: scaleX(0); transition: transform .28s cubic-bezier(.2,.7,.2,1); }
+.nav-top:hover::after, .nav-top:focus-visible::after, .has-sub.open > .nav-top::after { transform: scaleX(1); }
+@media (hover: hover) and (min-width: 1181px) { .has-sub:hover > .nav-top::after { transform: scaleX(1); } }
+/* dropdown: soft panel, a small gap under the item, fades and slides in */
+.sub { position: absolute; top: calc(100% + 10px); inset-inline-start: 0; min-width: 240px; background: var(--white); box-shadow: 0 0 0 1px var(--hairline), 0 18px 40px rgba(18,23,84,.12); padding: var(--space-2); z-index: 60; visibility: hidden; opacity: 0; transform: translateY(-6px); transition: opacity .22s ease, transform .28s cubic-bezier(.2,.7,.2,1), visibility 0s linear .28s; }
+.sub::before { content: ""; position: absolute; inset-inline: 0; top: -12px; height: 12px; } /* hover bridge across the gap */
+.has-sub.open .sub { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
+@media (hover: hover) and (min-width: 1181px) { .has-sub:hover .sub { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; } }
+.sub a { position: relative; display: block; padding: var(--space-3) var(--space-4); text-decoration: none; font-size: 16px; line-height: 22px; transition: background .2s, padding .25s cubic-bezier(.2,.7,.2,1); }
+.sub a::before { content: ""; position: absolute; inset-inline-start: var(--space-3); top: 50%; width: 6px; height: 6px; margin-top: -3px; background: var(--orange); transform: scale(0); transition: transform .2s; }
+.sub a:hover, .sub a:focus-visible { background: var(--paper); padding-inline-start: calc(var(--space-4) + 12px); }
+.sub a:hover::before, .sub a:focus-visible::before { transform: scale(1); }
 .header-cta { display: flex; gap: var(--space-3); }
 .menu-btn { display: none; margin-inline-start: auto; background: none; border: 0; width: 48px; height: 48px; cursor: pointer; color: var(--navy); }
 .menu-btn svg { width: 28px; height: 28px; margin: auto; }
@@ -56,8 +63,9 @@
   .nav.open { display: block; }
   .nav-list { flex-direction: column; align-items: stretch; gap: 0; }
   .nav-top { width: 100%; justify-content: space-between; font-size: 18px; padding: var(--space-4) 0; border-bottom: 1px solid var(--hairline); }
-  .nav-top:hover { box-shadow: none; }
-  .sub { position: static; box-shadow: none; padding: 0 0 var(--space-3); min-width: 0; display: none; visibility: visible; opacity: 1; transform: none; }
+  .nav-top::after { display: none; }
+  .sub { position: static; box-shadow: none; padding: 0 0 var(--space-3); min-width: 0; display: none; visibility: visible; opacity: 1; transform: none; transition: none; }
+  .sub::before { display: none; }
   .has-sub.open .sub { display: block; }
   .sub a { padding: var(--space-3) var(--space-4); }
   .menu-btn { display: block; }
@@ -344,13 +352,11 @@ svg.route[data-draw="load"].drawn path { --draw: 0; }
 .js .hero-copy .hero-young { animation: rise .9s 1.2s cubic-bezier(.2,.7,.2,1) both; }
 
 /* Join cards on desktop: shared rows, so headings, text and buttons line up across all three */
-@media (min-width: 1001px) {
-  @supports (grid-template-rows: subgrid) {
-    .join-grid { grid-template-rows: auto auto auto 1fr auto auto; }
-    .path { display: grid; grid-row: span 6; grid-template-rows: subgrid; row-gap: var(--space-4); align-content: start; }
-    .path .actions { grid-row: 5; margin-top: var(--space-4); }
-    .path .alt-pay { grid-row: 6; }
-  }
+@supports (grid-template-rows: subgrid) {
+  .join-grid { grid-template-rows: auto auto auto 1fr auto auto; }
+  .path { display: grid; grid-row: span 6; grid-template-rows: subgrid; row-gap: var(--space-4); align-content: start; }
+  .path .actions { grid-row: 5; margin-top: var(--space-4); }
+  .path .alt-pay { grid-row: 6; }
 }
 
 /* Footer: social icons */

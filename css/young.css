@@ -279,3 +279,6 @@ body.young .cookie-bar { bottom: calc(var(--tabbar) + var(--space-3)); }
 .socials a:hover { background: var(--white); }
 .socials a:hover svg { fill: var(--navy); }
 .c-cta .socials { justify-content: center; }
+
+/* same height as .btn everywhere (16px, line-height 1, 48px min) */
+.to-main-btn, .play { line-height: 1; }

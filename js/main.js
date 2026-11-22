@@ -34,8 +34,20 @@ document.addEventListener('DOMContentLoaded', function () {
     if (nav.classList.contains('open')) { closeMenu(); btn.focus(); }
   });
 
+  // ---- Inner pages: mark blocks for a gentle step-by-step reveal ----
+  if (document.body.classList.contains('inner') && !reduced) {
+    document.querySelectorAll('main .section .section-head, main .section .prose, main .section .notice, main .section .pull-quote, main .section .doc-list, main .section .media-slot, main .cta-band .wrap')
+      .forEach(function (el) { el.classList.add('rv', 'reveal-one'); });
+    document.querySelectorAll('main .cards, main .people, main .tiles, main .link-list, main .contact-grid, main .logo-wall').forEach(function (list) {
+      Array.prototype.forEach.call(list.children, function (el, i) {
+        el.classList.add('rv', 'reveal-one');
+        el.style.setProperty('--d', Math.min(i % 4, 3) * 0.09 + 's');   // stagger along a row
+      });
+    });
+  }
+
   // ---- Reveal on scroll ----
-  var items = document.querySelectorAll('.reveal, .reveal-stagger, .reveal-photo, .spin-in');
+  var items = document.querySelectorAll('.reveal, .reveal-stagger, .reveal-photo, .spin-in, .reveal-one');
   // A clipped photo has no visible area, so the observer watches its parent instead
   var watch = new Map();
   var io = new IntersectionObserver(function (entries) {
