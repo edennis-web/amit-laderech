@@ -52,9 +52,7 @@
 .has-sub.open .sub { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
 @media (hover: hover) and (min-width: 1181px) { .has-sub:hover .sub { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; } }
 .sub a { position: relative; display: block; padding: var(--space-3) var(--space-4); text-decoration: none; font-size: 16px; line-height: 22px; transition: background .2s, padding .25s cubic-bezier(.2,.7,.2,1); }
-.sub a::before { content: ""; position: absolute; inset-inline-start: var(--space-3); top: 50%; width: 6px; height: 6px; margin-top: -3px; background: var(--orange); transform: scale(0); transition: transform .2s; }
-.sub a:hover, .sub a:focus-visible { background: var(--paper); padding-inline-start: calc(var(--space-4) + 12px); }
-.sub a:hover::before, .sub a:focus-visible::before { transform: scale(1); }
+.sub a:hover, .sub a:focus-visible { background: var(--paper); padding-inline-start: calc(var(--space-4) + 6px); }
 .header-cta { display: flex; gap: var(--space-3); }
 .menu-btn { display: none; margin-inline-start: auto; background: none; border: 0; width: 48px; height: 48px; cursor: pointer; color: var(--navy); }
 .menu-btn svg { width: 28px; height: 28px; margin: auto; }

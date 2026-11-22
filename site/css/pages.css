@@ -6,8 +6,6 @@
 .nav-list > li[data-current] > .nav-top::after { transform: scaleX(1); background: var(--navy); }
 .nav-list > li[data-current]:hover > .nav-top::after, .nav-list > li[data-current].open > .nav-top::after { background: var(--orange); }
 .sub a[aria-current="page"] { font-weight: 700; }
-.sub a[aria-current="page"]::before { transform: scale(1); }
-.sub a[aria-current="page"] { padding-inline-start: calc(var(--space-4) + 12px); }
 .nav-en .nav-top { font: 700 14px/1 var(--font-english); }
 .nav-top { white-space: nowrap; }
 @media (max-width: 1180px) { .nav-list > li[data-current] > .nav-top { box-shadow: none; color: var(--orange); } }
