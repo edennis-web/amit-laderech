@@ -11,13 +11,13 @@
 <meta property="og:locale" content="he_IL">
 <link rel="icon" href="assets/brand/symbol/compass-mark.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/Heebo-Variable.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="stylesheet" href="css/tokens.css?v=e3495d08">
-<link rel="stylesheet" href="css/base.css?v=e3495d08">
-<link rel="stylesheet" href="css/main.css?v=e3495d08">
+<link rel="stylesheet" href="css/tokens.css?v=a1d9805d">
+<link rel="stylesheet" href="css/base.css?v=a1d9805d">
+<link rel="stylesheet" href="css/main.css?v=a1d9805d">
 <script>document.documentElement.classList.add('js');</script>
-<script src="js/cookies.js?v=e3495d08" defer></script>
-<script src="js/route-draw.js?v=e3495d08" defer></script>
-<script src="js/main.js?v=e3495d08" defer></script>
+<script src="js/cookies.js?v=a1d9805d" defer></script>
+<script src="js/route-draw.js?v=a1d9805d" defer></script>
+<script src="js/main.js?v=a1d9805d" defer></script>
 </head>
 <body>
 <!-- @header -->
@@ -101,11 +101,11 @@
       <h1 id="hero-title"><span>כמה פעמים</span> <span>יש לנו הזדמנות</span> <span>לשנות <em>מסלול חיים</em></span> <span>של מישהו?</span></h1>
       <p class="lead">עמית לדרך מלווה חיילות וחיילים משוחררים שגדלו בסביבה מוחלשת - עם מנטור אישי לשנה שלמה.</p>
       <div class="hero-ctas">
+        <a class="hero-young" href="young/"><span>חיילת או חייל משוחרר/ת?</span> <b>יש לך אתר משלך</b></a>
         <div class="actions">
           <a class="btn btn-orange" href="https://meshulam.co.il/quick_payment?b=8d4ee407628d09dd5983479d393cd06f">אני רוצה לתרום</a>
           <a class="btn btn-outline-white" href="mentors.html">להיות מנטור/ית</a>
         </div>
-        <a class="hero-young" href="young/"><span>חיילת או חייל משוחרר/ת?</span> <b>יש לך אתר משלך</b></a>
       </div>
     </div>
     <div class="hero-visual">
@@ -314,6 +314,15 @@
     </div>
   </section>
 </main>
+
+<!-- Gentle pointer to the youth site: appears once per visit, after the cookie choice -->
+<aside class="youth-pop" id="youth-pop" role="dialog" aria-labelledby="yp-title" aria-describedby="yp-desc" hidden>
+  <button type="button" class="yp-close" aria-label="סגירה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+  <img class="yp-shape" src="assets/brand/shapes/pointer-cyan.svg" alt="" aria-hidden="true">
+  <h2 id="yp-title">השתחררת לאחרונה?</h2>
+  <p id="yp-desc">יש לך אתר משלך - ליווי אישי, סדנאות ומלגות. ללא עלות.</p>
+  <a class="btn btn-navy" href="young/">לאתר שלך</a>
+</aside>
 
 <!-- @footer -->
 <footer class="site-footer">

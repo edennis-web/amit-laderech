@@ -141,9 +141,13 @@ a.card-item .more { margin-top: auto; font-weight: 700; }
 .cta-band .actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
 
 /* ---------- Contact ---------- */
-.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-6); }
+.contact-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); max-width: 900px; }
+@media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } }
 .contact-grid a.card-item { gap: var(--space-2); }
-.contact-grid .big { font: 900 22px/1.3 var(--font-hebrew); direction: ltr; text-align: right; }
+/* values sit on the card's bottom line; emails never overflow the box */
+.contact-grid .card-item { min-height: 150px; }
+.contact-grid .big { margin-top: auto; font: 900 20px/1.3 var(--font-hebrew); overflow-wrap: anywhere; }
+.contact-grid .big.en { display: block; font: 700 20px/1.4 var(--font-english); text-align: right; overflow-wrap: normal; }
 
 /* ---------- Notes / placeholders ---------- */
 .notice { background: var(--paper); box-shadow: inset -4px 0 0 var(--orange); padding: var(--space-6); display: grid; gap: var(--space-2); max-width: 70ch; }
