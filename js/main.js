@@ -169,34 +169,34 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('resize', placeRoad);
   }
 
-  // ---- Youth pop-up (home page): once per visit, after the cookie choice ----
+  // ---- Youth pop-up (home page): centered when the site opens, once per visit ----
   var pop = document.getElementById('youth-pop');
   if (pop) {
-    var seen = false;
+    var seen = false, lastFocus = null;
     try { seen = sessionStorage.getItem('amit-youth-pop') === '1'; } catch (e) {}
+    var remember = function () { try { sessionStorage.setItem('amit-youth-pop', '1'); } catch (e) {} };
     var closePop = function () {
       pop.classList.remove('show');
-      setTimeout(function () { pop.hidden = true; }, 400);
-      try { sessionStorage.setItem('amit-youth-pop', '1'); } catch (e) {}
+      document.documentElement.classList.remove('yp-open');
+      remember();
+      setTimeout(function () { pop.hidden = true; if (lastFocus) lastFocus.focus({ preventScroll: true }); }, reduced ? 0 : 350);
     };
     var openPop = function () {
-      if (seen) return;
-      seen = true;
+      lastFocus = document.activeElement;
       pop.hidden = false;
-      requestAnimationFrame(function () { requestAnimationFrame(function () { pop.classList.add('show'); }); });
+      document.documentElement.classList.add('yp-open');
+      void pop.offsetWidth;   // apply the hidden state first, so the fade-in runs
+      setTimeout(function () { pop.classList.add('show'); pop.querySelector('.btn').focus({ preventScroll: true }); }, 30);
     };
-    pop.querySelector('.yp-close').addEventListener('click', closePop);
-    pop.querySelector('a').addEventListener('click', function () { try { sessionStorage.setItem('amit-youth-pop', '1'); } catch (e) {} });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pop.hidden) closePop(); });
-    var bar = document.getElementById('cookie-bar');
-    var whenFree = function () { setTimeout(openPop, 1800); };
-    if (!seen) {
-      if (bar && !bar.hidden) {
-        new MutationObserver(function (m, obs) { if (bar.hidden) { obs.disconnect(); whenFree(); } }).observe(bar, { attributes: true, attributeFilter: ['hidden'] });
-      } else {
-        // cookies.js may still be deciding; give it a moment
-        setTimeout(function () { if (bar && !bar.hidden) { new MutationObserver(function (m, obs) { if (bar.hidden) { obs.disconnect(); whenFree(); } }).observe(bar, { attributes: true, attributeFilter: ['hidden'] }); } else { whenFree(); } }, 300);
-      }
-    }
+    pop.querySelectorAll('[data-yp-close]').forEach(function (el) { el.addEventListener('click', closePop); });
+    pop.querySelector('.btn').addEventListener('click', function () { remember(); closePop(); });
+    pop.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { closePop(); return; }
+      if (e.key !== 'Tab') return;   // keep focus inside the pop-up
+      var f = pop.querySelectorAll('button, a'), first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+    if (!seen) setTimeout(openPop, 700);
   }
 });

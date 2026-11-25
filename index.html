@@ -11,13 +11,13 @@
 <meta property="og:locale" content="he_IL">
 <link rel="icon" href="assets/brand/symbol/compass-mark.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/Heebo-Variable.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="stylesheet" href="css/tokens.css?v=a1d9805d">
-<link rel="stylesheet" href="css/base.css?v=a1d9805d">
-<link rel="stylesheet" href="css/main.css?v=a1d9805d">
+<link rel="stylesheet" href="css/tokens.css?v=f0388932">
+<link rel="stylesheet" href="css/base.css?v=f0388932">
+<link rel="stylesheet" href="css/main.css?v=f0388932">
 <script>document.documentElement.classList.add('js');</script>
-<script src="js/cookies.js?v=a1d9805d" defer></script>
-<script src="js/route-draw.js?v=a1d9805d" defer></script>
-<script src="js/main.js?v=a1d9805d" defer></script>
+<script src="js/cookies.js?v=f0388932" defer></script>
+<script src="js/route-draw.js?v=f0388932" defer></script>
+<script src="js/main.js?v=f0388932" defer></script>
 </head>
 <body>
 <!-- @header -->
@@ -315,14 +315,21 @@
   </section>
 </main>
 
-<!-- Gentle pointer to the youth site: appears once per visit, after the cookie choice -->
-<aside class="youth-pop" id="youth-pop" role="dialog" aria-labelledby="yp-title" aria-describedby="yp-desc" hidden>
-  <button type="button" class="yp-close" aria-label="סגירה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
-  <img class="yp-shape" src="assets/brand/shapes/pointer-cyan.svg" alt="" aria-hidden="true">
-  <h2 id="yp-title">השתחררת לאחרונה?</h2>
-  <p id="yp-desc">יש לך אתר משלך - ליווי אישי, סדנאות ומלגות. ללא עלות.</p>
-  <a class="btn btn-navy" href="young/" target="_blank" rel="noopener">לאתר שלך</a>
-</aside>
+<!-- Youth pop-up: centered on load (once per visit), page dimmed behind it -->
+<div class="youth-pop-wrap" id="youth-pop" hidden>
+  <div class="yp-backdrop" data-yp-close></div>
+  <section class="youth-pop" role="dialog" aria-modal="true" aria-labelledby="yp-title" aria-describedby="yp-desc">
+    <button type="button" class="yp-close" data-yp-close aria-label="סגירה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+    <img class="yp-shape" src="assets/brand/shapes/pointer-white.svg" alt="" aria-hidden="true">
+    <p class="yp-kicker">לחיילות ולחיילים משוחררים</p>
+    <h2 id="yp-title">השתחררת לאחרונה?</h2>
+    <p id="yp-desc">יש לך אתר משלך - ליווי אישי, סדנאות ומלגות. ללא עלות.</p>
+    <div class="yp-actions">
+      <a class="btn btn-navy" href="young/" target="_blank" rel="noopener">לאתר שלך</a>
+      <button type="button" class="yp-skip" data-yp-close>להמשך באתר העמותה</button>
+    </div>
+  </section>
+</div>
 
 <!-- @footer -->
 <footer class="site-footer">
